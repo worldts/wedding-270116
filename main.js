@@ -338,11 +338,13 @@ function copyLink() {
 /* 공유할 주소 — #뒤에 붙는 찌꺼기를 떼어 냅니다 */
 function shareUrl() { return location.href.split('#')[0]; }
 
-/* 카카오 카드에 들어갈 사진 주소 (반드시 http/https 로 시작하는 전체 주소) */
+/* 카카오 카드에 들어갈 사진 주소 (카카오는 http/https 로 시작하는 전체 주소만 받음)
+   config.js 의 shareImage 가 'assets/...' 같은 상대 경로면 배포 주소 기준 전체 주소로 바꿈 */
 function shareImageUrl() {
-  if (CONFIG.shareImage) return CONFIG.shareImage;
+  var img = CONFIG.shareImage || CONFIG.coverImage;
+  if (/^https?:\/\//.test(img)) return img;
   if (location.protocol === 'http:' || location.protocol === 'https:') {
-    return location.origin + location.pathname.replace(/[^/]*$/, '') + CONFIG.coverImage;
+    return location.origin + location.pathname.replace(/[^/]*$/, '') + img;
   }
   return '';
 }

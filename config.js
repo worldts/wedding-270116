@@ -57,7 +57,7 @@ var CONFIG = {
     'assets/detail1.png',
     'assets/detail2.png'
   ],
-  bgm:         'assets/bgm.mp3',
+  bgm:         'assets/bgm.mp3?v=2',
 
   /* ── 카카오톡 공유 ──────────────────────────
      kakaoJsKey 를 채우면 '카카오톡으로 청첩장 전하기' 버튼이
@@ -68,11 +68,12 @@ var CONFIG = {
                  → 앱 키 의 'JavaScript 키' 를 복사
                  → [플랫폼 > Web] 에 배포 주소 등록 (네이버 지도와 같은 절차)
 
-     shareImage : 공유 카드에 들어갈 사진 주소.
-                  반드시 https:// 로 시작하는 전체 주소여야 합니다.
-                  비워 두면 위의 coverImage 를 자동으로 씁니다. */
+     shareImage : 공유 카드에 들어갈 사진.
+                  'assets/...' 처럼 적으면 배포 주소 기준 전체 주소로 자동 변환됩니다.
+                  비워 두면 위의 coverImage 를 자동으로 씁니다.
+                  ※ 주소를 붙여넣어 공유할 때의 사진은 index.html 의 og:image 에서 따로 정합니다. */
   kakaoJsKey: '31b1e92da8b68b3655b8111c0acfa0c8',
-  shareImage: '',
+  shareImage: 'assets/kakao_main.jpg',
 
   /* ── 갤러리 ───────────────────────────────────────────
      적은 순서대로 화면에 깔립니다. 사진을 빼려면 그 줄을 지우고,
