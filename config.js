@@ -78,19 +78,25 @@ var CONFIG = {
   /* ── 갤러리 ───────────────────────────────────────────
      적은 순서대로 화면에 깔립니다. 사진을 빼려면 그 줄을 지우고,
      더하려면 gallery 폴더에 넣은 뒤 같은 형식으로 한 줄 추가하세요. */
+  // ?v=2 : 예전 g1~g12 사진을 캐시한 브라우저도 새 사진을 받도록
   gallery: [
-    'gallery/g1.jpg',
-    'gallery/g2.jpg',
-    'gallery/g3.jpg',
-    'gallery/g4.jpg',
-    'gallery/g5.jpg',
-    'gallery/g6.jpg',
-    'gallery/g11.jpg',
-    'gallery/g12.jpg',
-    'gallery/g7.jpg',
-    'gallery/g8.jpg',
-    'gallery/g9.jpg',
-    'gallery/g10.jpg'
+    'gallery/g1.jpg?v=2',
+    'gallery/g2.jpg?v=2',
+    'gallery/g3.jpg?v=2',
+    'gallery/g4.jpg?v=2',
+    'gallery/g5.jpg?v=2',
+    'gallery/g6.jpg?v=2',
+    'gallery/g7.jpg?v=2',
+    'gallery/g8.jpg?v=2',
+    'gallery/g9.jpg?v=2',
+    'gallery/g10.jpg?v=2',
+    'gallery/g11.jpg?v=2',
+    'gallery/g12.jpg?v=2',
+    'gallery/g13.jpg?v=2',
+    'gallery/g14.jpg?v=2',
+    'gallery/g15.jpg?v=2',
+    'gallery/g16.jpg?v=2',
+    'gallery/g17.jpg?v=2'
   ],
 
   /* ── 초대 문구 (invite 그림 위에 얹히는 세 줄) ───────────
