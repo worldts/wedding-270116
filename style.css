@@ -1,6 +1,5 @@
 :root{
-  --white:#ffffff;
-  --ink:#3c3c3c;--soft:#858585;--faint:#adadad;
+  --ink:#3c3c3c;
   --rose:#FF56B1;--rose-d:#e03897;--line:#e0e0e0;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -9,9 +8,6 @@ body{font-family:'Pretendard',sans-serif;color:var(--ink);line-height:1.9;font-w
 .phone{max-width:430px;margin:0 auto;background:url('assets/paper-mid-pink.png') top center/100% auto repeat-y;position:relative;overflow:hidden;box-shadow:0 0 50px rgba(0,0,0,.12);}
 
 section{position:relative;padding:78px 34px;}
-.eyebrow{font-family:'Geologica','Pretendard','Helvetica Neue',Arial,sans-serif;font-optical-sizing:auto;font-variation-settings:"slnt" 0,"CRSV" 0,"SHRP" 0;font-size:22px;color:var(--rose);text-align:center;letter-spacing:1px;}
-.ko-label{text-align:center;font-size:11px;letter-spacing:7px;color:var(--faint);margin-top:8px;font-weight:400;}
-.rule{width:36px;height:1px;background:var(--rose);opacity:.55;margin:20px auto 0;}
 
 /* music */
 .musicbar{position:absolute;top:18px;right:18px;z-index:20;}
@@ -103,8 +99,7 @@ section{position:relative;padding:78px 34px;}
 
 
 /* ---- share ---- */
-/* toourguest 스타일: 세로로 쌓은 전폭 버튼 2개,
-   글자는 왼쪽 · 아이콘은 오른쪽 */
+/* 공유 버튼: 세로로 쌓은 전폭 버튼 2개, 글자는 왼쪽 · 아이콘은 오른쪽 */
 .sharebar{display:flex;flex-direction:column;align-items:center;gap:12px;padding:36px;background:#fff;}
 .share-letter{display:block;width:100%;max-width:340px;height:auto;margin-bottom:12px;}   /* 공유 버튼 위 편지 */
 .share-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;

@@ -331,7 +331,7 @@ function copyLink() {
   .catch(function () { fallbackCopy(url); showToast(CONFIG.toastLinkCopied); });
 }
 
-/* ---- 공유하기 (toourguest 방식) ----
+/* ---- 공유하기 ----
    config.js 의 kakaoJsKey 를 채우면 카카오톡 공유창이 뜹니다.
    비워 두면 휴대폰 기본 공유창(그것도 없으면 링크 복사)으로 대신합니다. */
 
@@ -433,8 +433,9 @@ document.addEventListener('DOMContentLoaded', function () {
    네이버 실지도(마커 포함)가 뜨고, 하나라도 비어 있으면
    기존 구글 지도(iframe)가 그대로 뜹니다.
    (네이버 지도는 http/https 로 서버를 띄운 주소에서만 동작합니다.
-    접속 주소를 NCP '도메인 관리'에 등록해 두어야 인증이 됩니다.
-    localhost:3000, 192.168.x.x:3000 등 — file:// 로 열면 구글 지도로 대체)
+    접속 주소를 NCP Application 의 'Web 서비스 URL'에 등록해 두어야 인증이 됩니다.
+    현재 등록: https://worldts.github.io, http://localhost:3000
+    — file:// 로 열거나 인증에 실패하면 구글 지도로 대체)
 */
 (function () {
   var el = document.getElementById('venueMap');
@@ -464,7 +465,7 @@ function embedGoogleMap(el) {
     + 'src="https://www.google.com/maps?q=' + encodeURIComponent(CONFIG.venueMapEmbed) + '&z=17&output=embed"></iframe>';
 }
 
-/* 네이버 지도 (toourguest 가 쓰는 것과 같은 방식: 좌표 + 마커) */
+/* 네이버 지도 (좌표 + 마커 + 예식장 이름 말풍선) */
 function embedNaverMap(el) {
   var lat = Number(CONFIG.venueLat), lng = Number(CONFIG.venueLng);
   if (!isFinite(lat) || !isFinite(lng)) { embedGoogleMap(el); return; }
@@ -490,7 +491,7 @@ function embedNaverMap(el) {
   });
 }
 
-/* ---- 지도 카드 밑 네이버·카카오·티맵 링크 (참조 템플릿 방식) ---- */
+/* ---- 지도 카드 밑 네이버·카카오·티맵 링크 (모바일은 앱으로 연결) ---- */
 (function () {
   var el = document.getElementById('mapLinks');
   if (!el) return;
