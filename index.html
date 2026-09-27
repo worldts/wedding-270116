@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- 아래 세 줄은 카카오톡·페이스북 공유 미리보기에 쓰입니다.
+     공유 미리보기를 만드는 프로그램은 config.js 를 읽지 못하므로
+     이 세 줄만은 여기서 직접 고쳐야 하고, config.js 와 내용을 맞춰 주세요. -->
+<title>유태선, 온세상 결혼합니다.</title>
+<meta property="og:title" content="유태선, 온세상 결혼합니다.">
+<meta property="og:description" content="2027년 2월 21일 일요일 오후 2시 00분 · 노블발렌티 대치점">
+
+<!-- 브라우저 탭 아이콘 -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:opsz,slnt,wght,CRSV,SHRP@6..96,-11..0,100..900,0..1,0..100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css?v=20260927af">
+
+<!-- 카카오톡 공유 SDK (config.js 의 kakaoJsKey 로 초기화됩니다) -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+</head>
+<body>
+<div class="phone">
+
+  <div class="musicbar"><button id="musicBtn" onclick="toggleMusic()" aria-label="배경음악">♪</button></div>
+  <audio id="bgm" loop preload="auto" data-cfg-src="bgm"></audio>
+
+  <!-- ===== COVER ===== -->
+  <section class="cover">
+    <img class="cover-main" data-cfg-src="coverImage" data-cfg-alt="coupleNames">
+  </section>
+
+  <!-- ===== INTRO (예식장 이름 · 날짜) ===== -->
+  <div class="intro-block">
+    <div class="intro-orn" aria-hidden="true">₊˚⊹⋆</div>
+    <div class="intro-venue" data-cfg="venueHall"></div>
+    <div class="intro-date" data-cfg-html="dateStampHtml"></div>
+  </div>
+
+  <!-- ===== INVITE ILLUST ===== -->
+  <section class="invite-illust-sec">
+    <div class="invite-title" data-cfg="inviteTitle"></div>
+    <!-- 얼굴 위치는 main.js 가 아래 이름 가운데에 맞춰 줍니다 -->
+    <div class="invite-faces" aria-hidden="true">
+      <span class="face"></span><span class="heart">♥</span><span class="face"></span>
+    </div>
+    <div class="invite-names">
+      <span data-cfg="groomLine"></span>
+      <span data-cfg="brideLine"></span>
+    </div>
+    <img class="invite-illust" data-cfg-src="inviteImage" alt="">
+  </section>
+
+  <!-- ===== MESSAGE NOTE ===== -->
+  <!-- 내용은 config.js 의 notes 에서 채워집니다 -->
+  <section class="msgnote" id="noteList"></section>
+
+  <!-- ===== SECTION TRANSITION ===== -->
+  <div class="paper-fold" aria-hidden="true"></div>
+
+  <!-- ===== LOCATION ===== -->
+  <section class="loc">
+    <div class="detail-card">
+      <div class="dc-block">
+        <div class="dc-label">⊹ date ⊹</div>
+        <div class="dc-text" data-cfg="dateShort"></div>
+        <img class="cal-img" data-cfg-src="calendarImage" alt="2027년 1월 달력 — 16일 토요일 예식">
+      </div>
+      <div class="dc-block">
+        <div class="dc-label">⊹ venue ⊹</div>
+        <div class="dc-text">
+          <div data-cfg="venueHall"></div>
+          <div data-cfg="venueAddress"></div>
+        </div>
+      </div>
+      <div class="map"><div id="venueMap" style="width:100%;height:100%;"></div></div>
+      <div class="map-links" id="mapLinks"></div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION TRANSITION ===== -->
+  <div class="paper-fold" aria-hidden="true"></div>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery">
+    <div class="gallery-title">⊹ photos ⊹</div>
+    <!-- 사진은 config.js 의 gallery 에서 채워집니다 -->
+    <div class="stack" id="stack"></div>
+    <div class="stack-meta">
+      <div class="stack-count" id="stackCount"></div>
+      <div class="stack-hint">‹ 사진을 옆으로 넘겨보세요 ›</div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION TRANSITION ===== -->
+  <div class="paper-fold" aria-hidden="true"></div>
+
+  <!-- ===== DETAILS ===== -->
+  <section class="details">
+    <div class="details-title">⊹ details ⊹</div>
+    <!-- 안내 이미지는 config.js 의 detailImages 에서 채워집니다 -->
+    <div class="dcar" id="detailCarousel">
+      <div class="dcar-view" id="dcarView"><div class="dcar-track" id="dcarTrack"></div></div>
+      <button class="dcar-btn dcar-prev" id="dcarPrev" aria-label="이전 안내">‹</button>
+      <button class="dcar-btn dcar-next" id="dcarNext" aria-label="다음 안내">›</button>
+    </div>
+    <div class="dcar-dots" id="dcarDots"></div>
+  </section>
+
+  <!-- ===== SECTION TRANSITION ===== -->
+  <div class="paper-fold" aria-hidden="true"></div>
+
+  <!-- ===== ACCOUNT ===== -->
+  <section class="account">
+    <div class="thanks-title">⊹ thanks to ⊹</div>
+    <p class="acc-intro" data-cfg-html="accountIntro"></p>
+    <!-- 계좌 목록은 config.js 의 groomAccounts / brideAccounts 에서 채워집니다 -->
+    <div class="acc" id="acc1">
+      <div class="acc-head" onclick="toggleAcc('acc1')"><span class="side"><span class="side-en">⊹ groom ⊹</span><span class="side-ko" data-cfg="groomAccountLabel"></span></span><span class="arw"></span></div>
+      <div class="acc-body" id="acc1Body"></div>
+    </div>
+    <div class="acc" id="acc2">
+      <div class="acc-head" onclick="toggleAcc('acc2')"><span class="side"><span class="side-en">⊹ bride ⊹</span><span class="side-ko" data-cfg="brideAccountLabel"></span></span><span class="arw"></span></div>
+      <div class="acc-body" id="acc2Body"></div>
+    </div>
+  </section>
+
+
+  <!-- ===== SHARE ===== -->
+  <div class="sharebar">
+    <img class="share-letter" data-cfg-src="letterImage" alt="신랑 유태선, 신부 온세상이 전하는 편지">
+    <button class="share-btn share-kakao" id="shareKakaoBtn" onclick="shareKakao(this)">
+      <span>카카오톡으로 청첩장 전하기</span>
+      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.1473 18.6464C4.95204 18.8417 4.95204 19.1583 5.1473 19.3536C5.34256 19.5488 5.65915 19.5488 5.85441 19.3536L18 7.20797L18 18C18 18.2761 18.2239 18.5 18.5 18.5C18.7761 18.5 19 18.2761 19 18L19 6C19 5.72386 18.7761 5.5 18.5 5.5L6.49999 5.5C6.22385 5.5 5.99999 5.72386 5.99999 6C5.99999 6.27614 6.22385 6.5 6.49999 6.5L17.2937 6.5L5.1473 18.6464Z" fill="currentColor"></path></svg>
+    </button>
+    <button class="share-btn share-copy" onclick="copyLink()">
+      <span>청첩장 주소 복사하기</span>
+      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 1.5C4.67157 1.5 4 2.17157 4 3V16C4 16.8284 4.67157 17.5 5.5 17.5H15.5C16.3284 17.5 17 16.8284 17 16V3C17 2.17157 16.3284 1.5 15.5 1.5H5.5ZM5 3C5 2.72386 5.22386 2.5 5.5 2.5H15.5C15.7761 2.5 16 2.72386 16 3V16C16 16.2761 15.7761 16.5 15.5 16.5H5.5C5.22386 16.5 5 16.2761 5 16V3ZM21 6C21 5.72386 20.7761 5.5 20.5 5.5C20.2239 5.5 20 5.72386 20 6V19C20 19.8284 19.3284 20.5 18.5 20.5H8.5C8.22386 20.5 8 20.7239 8 21C8 21.2761 8.22386 21.5 8.5 21.5H18.5C19.8807 21.5 21 20.3807 21 19V6Z" fill="currentColor"></path></svg>
+    </button>
+  </div>
+
+</div>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨위로">↑</button>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" onclick="closeLB()">✕</span>
+  <span class="lb-nav lb-prev" onclick="moveLB(-1)">‹</span>
+  <img class="lb-img" id="lb-img" alt="">
+  <span class="lb-nav lb-next" onclick="moveLB(1)">›</span>
+  <div class="lb-count" id="lb-count">1 / 6</div>
+</div>
+<div class="toast" id="toast">복사되었습니다</div>
+
+<script src="config.js?v=20260927af"></script>
+<script src="main.js?v=20260927af"></script>
+</body>
+</html>

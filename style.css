@@ -1,0 +1,171 @@
+:root{
+  --white:#ffffff;
+  --ink:#3c3c3c;--soft:#858585;--faint:#adadad;
+  --rose:#FF56B1;--rose-d:#e03897;--line:#e0e0e0;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{background:#e3e3e3;}
+body{font-family:'Pretendard',sans-serif;color:var(--ink);line-height:1.9;font-weight:400;letter-spacing:.2px;}
+.phone{max-width:430px;margin:0 auto;background:url('assets/paper-mid-pink.png') top center/100% auto repeat-y;position:relative;overflow:hidden;box-shadow:0 0 50px rgba(0,0,0,.12);}
+
+section{position:relative;padding:78px 34px;}
+.eyebrow{font-family:'Geologica','Pretendard','Helvetica Neue',Arial,sans-serif;font-optical-sizing:auto;font-variation-settings:"slnt" 0,"CRSV" 0,"SHRP" 0;font-size:22px;color:var(--rose);text-align:center;letter-spacing:1px;}
+.ko-label{text-align:center;font-size:11px;letter-spacing:7px;color:var(--faint);margin-top:8px;font-weight:400;}
+.rule{width:36px;height:1px;background:var(--rose);opacity:.55;margin:20px auto 0;}
+
+/* music */
+.musicbar{position:absolute;top:18px;right:18px;z-index:20;}
+.musicbar button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.6);cursor:pointer;
+  background:rgba(0,0,0,.25);color:#fff;font-size:14px;backdrop-filter:blur(4px);}
+
+/* ---- cover ---- */
+.cover{padding:0;position:relative;overflow:hidden;background:#111;}
+.cover .cover-main{display:block;width:100%;height:auto;}
+
+/* ---- intro block ---- */
+.intro-block{text-align:center;padding:44px 30px 24px;}
+.intro-orn{font-family:'Apple SD Gothic Neo','Segoe UI Symbol','Noto Sans Symbols 2','Pretendard',sans-serif;
+  font-size:28px;color:var(--rose);letter-spacing:3px;line-height:1.2;}
+.intro-venue{margin-top:20px;font-family:'Pretendard',sans-serif;font-weight:400;font-size:16px;color:#121212;letter-spacing:-0.02rem;line-height:1.4;}
+.intro-date{margin-top:8px;font-family:'Geologica','Pretendard','Helvetica Neue',Arial,sans-serif;font-optical-sizing:auto;font-variation-settings:"slnt" 0,"CRSV" 0,"SHRP" 0;
+  font-weight:400;font-size:16px;color:#121212;letter-spacing:.5px;line-height:1.4;white-space:nowrap;}
+.intro-date .dow{display:inline-block;border:1px solid #121212;border-radius:999px;padding:0 9px;margin:0 4px;font-size:12px;vertical-align:1px;}
+
+/* ---- gallery ---- */
+/* 사진이 가운데로 하나씩 포개지고, 좌우로 끌어서 넘기는 스택 */
+.stack{position:relative;max-width:360px;height:420px;margin:6px auto 0;touch-action:pan-y;user-select:none;-webkit-user-select:none;}
+.stack.ready{cursor:grab;}
+.stack.ready:active{cursor:grabbing;}
+/* 빈티지 폴라로이드 카드 — assets/frame.png (1056x1285) 를 사진 위에 겹침.
+   사진은 프레임의 투명한 창 자리(가로 5.4%~94.1%, 세로 6.5%~80.2%)에 꽉 채움
+   (가로·세로 사진 모두 잘려서 들어가고, 크게 보기에서는 원본 전체) */
+.stack-card{position:absolute;left:50%;top:50%;width:min(270px,70vw);aspect-ratio:1056/1285;
+  box-shadow:0 5px 14px rgba(0,0,0,.16);will-change:transform;}
+.stack-card img{position:absolute;left:5%;top:6.1%;width:89.5%;height:74.4%;object-fit:cover;pointer-events:none;}
+.stack-card::after{content:'';position:absolute;inset:0;background:url('assets/frame.png') center/100% 100% no-repeat;pointer-events:none;}
+.stack-meta{text-align:center;margin-top:14px;}
+.stack-count{font-family:'Geologica','Pretendard',sans-serif;font-size:13px;letter-spacing:3px;color:#000;}
+.stack-hint{font-size:11px;letter-spacing:1px;color:#000;margin-top:4px;}
+/* ---- details 안내 캐러셀 ---- */
+.details{padding-left:20px;padding-right:20px;}
+/* photos · details 는 위아래 paper-fold 와의 공백을 20px 로 (다른 구역은 78px) */
+.gallery,.details{padding-top:20px;padding-bottom:20px;}
+.account{padding-top:20px;}   /* thanks to: 위 paper-fold 와의 공백만 20px */
+.dcar{position:relative;max-width:360px;margin:0 auto;}
+.dcar-view{overflow:hidden;border-radius:6px;touch-action:pan-y;user-select:none;-webkit-user-select:none;}
+.dcar-track{display:flex;will-change:transform;}
+.dcar-slide{flex:0 0 100%;}
+.dcar-slide img{display:block;width:100%;height:auto;pointer-events:none;}
+.dcar-btn{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.88);color:#000;font-size:17px;line-height:26px;padding:0;cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.14);}
+.dcar-prev{left:8px;}
+.dcar-next{right:8px;}
+/* 페이지 인디케이터: 지금 보는 점만 가로로 길게 */
+.dcar-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}
+.dcar-dot{width:6px;height:6px;border-radius:3px;border:none;padding:0;background:#c9c9c9;cursor:pointer;transition:width .3s,background .3s;}
+.dcar-dot.on{width:22px;background:#000;}
+
+/* 갤러리·details·thanks to 제목 — date / venue 제목(.dc-label)과 같은 모양 */
+.gallery-title,.details-title,.thanks-title{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;line-height:1.8;color:#000;text-align:center;margin-bottom:14px;}
+
+
+/* ---- location ---- */
+.loc{padding-top:24px;padding-bottom:20px;}
+
+/* ---- calendar (date 블록 맨 아래) ---- */
+/* calendar.png 양옆 흰 여백(각 약 20%)을 잘라서 달력이 카드에 크게 들어가도록.
+   달력 격자 중심 = 이미지 가로 50% 이므로 가운데 기준으로 자름.
+   보이는 범위: 가로 15.5%~84.5%, 세로 전체 */
+.cal-img{display:block;width:100%;margin-top:10px;aspect-ratio:2087/2290;object-fit:cover;object-position:50% 50%;}
+.map{max-width:360px;margin:14px auto 22px;height:240px;border-radius:10px;overflow:hidden;position:relative;border:1px solid var(--line);}
+
+/* ---- account ---- */
+.acc-intro{text-align:center;font-family:'Pretendard',sans-serif;font-size:14px;color:#000;line-height:1.8;margin-top:24px;}
+/* date·venue 카드와 같은 흰 직사각형 · 모노 글꼴 · 검정 + / − */
+.acc{max-width:340px;margin:16px auto 0;background:#fff;overflow:hidden;}
+.acc-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;}
+.acc-head .side{display:flex;align-items:baseline;gap:10px;}
+.acc-head .side-en{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:#000;}
+.acc-head .side-ko{font-family:'Pretendard',sans-serif;font-size:12px;color:#000;}
+.acc-head .arw{font-family:'IBM Plex Mono',monospace;font-size:18px;line-height:1;color:#000;}
+.acc-head .arw::before{content:'+';}
+.acc.open .acc-head .arw::before{content:'\2212';}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.acc.open .acc-body{max-height:400px;}
+.acc-item{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-top:1px solid #ececec;}
+.acc-item .bank{font-size:13px;color:#000;}
+.acc-item .no{font-family:'Pretendard',sans-serif;font-size:14px;color:#000;letter-spacing:.3px;margin-top:2px;}
+.acc-item .ho{font-size:12px;color:#000;opacity:.7;margin-top:2px;}
+.copy-btn{background:transparent;border:1px solid #000;color:#000;border-radius:0;cursor:pointer;white-space:nowrap;
+  font-family:'Pretendard',sans-serif;font-size:12px;padding:6px 12px;}
+.copy-btn:active{background:#000;color:#fff;}
+
+
+/* ---- share ---- */
+/* toourguest 스타일: 세로로 쌓은 전폭 버튼 2개,
+   글자는 왼쪽 · 아이콘은 오른쪽 */
+.sharebar{display:flex;flex-direction:column;align-items:center;gap:12px;padding:36px;background:#fff;}
+.share-letter{display:block;width:100%;max-width:340px;height:auto;margin-bottom:12px;}   /* 공유 버튼 위 편지 */
+.share-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;max-width:340px;height:48px;padding:0 20px;border:none;border-radius:12px;cursor:pointer;
+  font-family:'Pretendard',sans-serif;font-size:14px;font-weight:500;letter-spacing:-0.02rem;}
+.share-btn svg{flex:0 0 auto;display:block;}
+.share-btn:active{filter:brightness(.94);}
+.share-btn:disabled{opacity:.5;cursor:default;}
+.share-kakao{background:#FCE777;color:#222222;}
+.share-copy{background:#0F172A;color:#ffffff;}
+
+/* ---- scroll top ---- */
+.totop{position:fixed;right:calc(50% - 210px);bottom:26px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(255,253,251,.92);color:var(--rose-d);font-size:16px;cursor:pointer;z-index:60;box-shadow:0 4px 14px rgba(0,0,0,.12);backdrop-filter:blur(4px);}
+@media(max-width:470px){.totop{right:18px;}}
+
+/* ---- lightbox / toast ---- */
+.lightbox{position:fixed;inset:0;background:rgba(20,16,16,.94);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;}
+.lightbox.show{display:flex;}
+.lightbox .lb-img{max-width:92vw;max-height:76vh;width:auto;height:auto;border-radius:3px;display:block;object-fit:contain;color:#fff;font-family:'Geologica','Pretendard','Helvetica Neue',Arial,sans-serif;font-optical-sizing:auto;font-variation-settings:"slnt" 0,"CRSV" 0,"SHRP" 0;font-size:22px;}
+.lightbox .lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:32px;padding:20px;cursor:pointer;opacity:.75;}
+.lb-prev{left:0;}.lb-next{right:0;}
+.lightbox .lb-close{position:absolute;top:22px;right:26px;color:#fff;font-size:26px;cursor:pointer;}
+.lightbox .lb-count{position:absolute;bottom:42px;color:#fff;font-size:13px;letter-spacing:3px;}
+.toast{position:fixed;left:50%;bottom:44px;transform:translateX(-50%) translateY(20px);background:rgba(50,44,40,.96);color:#fff;padding:12px 26px;border-radius:3px;font-size:12px;letter-spacing:1px;opacity:0;transition:.3s;z-index:200;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---- message note / invite illust ---- */
+.invite-illust-sec{text-align:center;padding:28px 34px 8px;}
+/* 아래 세 줄은 invite.png 안에 그려진 글자와 같은 크기로 맞춰 둔 것입니다.
+   (그림을 280px 폭으로 보여줬을 때 기준: 제목 21px · 얼굴 폭 272px · 이름 19px) */
+.invite-title{font-family:'Pretendard',sans-serif;font-weight:600;font-size:17px;color:var(--rose);letter-spacing:-0.02rem;line-height:1.4;}
+/* 얼굴 세 조각은 겹쳐 놓고 main.js 가 가로 위치를 정해 줍니다 */
+.invite-faces{position:relative;max-width:246px;height:1.2em;margin:20px auto 0;
+  font-weight:400;font-size:28px;color:#121212;line-height:1.2;white-space:nowrap;}
+.invite-faces .face,.invite-faces .heart{position:absolute;top:0;transform:translateX(-50%);}
+.invite-faces .heart{left:50%;color:var(--rose);}
+.invite-names{max-width:246px;margin:11px auto 0;display:flex;justify-content:space-between;
+  font-family:'Pretendard',sans-serif;font-weight:600;font-size:15px;color:#121212;letter-spacing:-0.02rem;line-height:1.4;}
+.invite-illust{width:76%;max-width:280px;height:auto;margin-top:16px;}
+.msgnote{text-align:center;padding-top:24px;padding-bottom:28px;}
+.note-item{margin-bottom:30px;}
+.note-item:last-child{margin-bottom:0;}
+.num-badge{display:flex;width:1.25rem;height:1.25rem;padding:0.375rem 0.5625rem;flex-direction:column;justify-content:center;align-items:center;gap:0.5rem;aspect-ratio:1/1;box-sizing:content-box;margin:0 auto;font-family:'Geologica','Pretendard','Helvetica Neue',Arial,sans-serif;font-optical-sizing:auto;font-variation-settings:"slnt" 0,"CRSV" 0,"SHRP" 0;font-weight:600;font-size:1rem;color:var(--rose);}
+.note-text{color:#121212;text-align:center;font-family:'Pretendard',sans-serif;font-size:1rem;font-style:normal;font-weight:400;line-height:170%;letter-spacing:-0.06rem;}
+b,strong{font-weight:600;}
+
+/* ---- 종이 접힘 장식 (섹션 경계) ---- */
+.paper-fold{width:100%;aspect-ratio:760/240;background:url('assets/paper-fold-pink.png') center/100% auto no-repeat;}
+
+/* ---- 예식 정보 흰 카드 (date · information · venue) — 참조 레몬 카드 스타일 ---- */
+.detail-card{max-width:340px;margin:0 auto;background:#fff;padding:30px 24px;display:flex;flex-direction:column;gap:24px;text-align:center;}
+.detail-card .dc-label{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;line-height:1.8;color:#000;}
+.detail-card .dc-text{margin-top:10px;font-size:14px;line-height:1.8;color:#000;}
+.detail-card .map{width:100%;margin:0;max-width:none;}
+/* 지도 핀 위 예식장 이름표 말풍선 */
+.map-label-anchor{position:relative;width:0;height:0;}
+.map-label{position:absolute;left:0;bottom:44px;transform:translateX(-50%);white-space:nowrap;
+  background:#fff;border:1px solid #000;padding:5px 11px;font-family:'Pretendard',sans-serif;font-size:12px;font-weight:600;color:#000;line-height:1.3;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);}
+.map-label::after{content:'';position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:#fff;
+  border-right:1px solid #000;border-bottom:1px solid #000;transform:translateX(-50%) rotate(45deg);}
+.detail-card .map-links{display:flex;justify-content:center;gap:24px;}
+.detail-card .map-links a{font-family:'Pretendard',sans-serif;font-size:13px;font-weight:500;color:#000;text-decoration:underline;}
