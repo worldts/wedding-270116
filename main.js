@@ -118,7 +118,11 @@ renderAccounts('acc1Body', CONFIG.groomAccounts);
 renderAccounts('acc2Body', CONFIG.brideAccounts);
 
 /* ---- 갤러리 ---- */
-var galleryItems = CONFIG.gallery.map(function (u) { return { src: u }; });
+// 항목마다 thumb(폴라로이드용 1:1)과 full(크게 보기용 원본). 예전처럼 주소 하나만 적어도 둘 다 그 사진을 씀
+var galleryItems = CONFIG.gallery.map(function (u) {
+  if (typeof u === 'string') return { thumb: u, src: u };
+  return { thumb: u.thumb || u.full, src: u.full || u.thumb };
+});
 // 사진 스택 하나를 만듦 (stackEl 안에 카드를 쌓고, countEl 에 '1 / 12' 표시)
 function makeStack(stackEl, countEl) {
   var stackCards = [], stackCur = 0, stackBusy = false;
@@ -143,7 +147,7 @@ function makeStack(stackEl, countEl) {
       var c = document.createElement('div');
       c.className = 'stack-card';
       var img = document.createElement('img');
-      img.src = it.src; img.alt = ''; img.draggable = false;
+      img.src = it.thumb; img.alt = ''; img.draggable = false;
       c.appendChild(img);
       stackEl.appendChild(c);
       stackCards.push(c);

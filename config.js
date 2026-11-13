@@ -44,7 +44,7 @@ var CONFIG = {
   naverMapKey: 'oj2feszvn2',  // NCP '웹 지도 API v3' Client ID
   venueLat:    37.50835054,     // 라브르에드니아 위도
   venueLng:    127.07957306,     // 라브르에드니아 경도
-  venueZoom:   15,
+  venueZoom:   14,
 
   /* ── 이미지 · 배경음악 ────────────────────────────────── */
   coverImage:  'assets/cover.jpg',
@@ -75,27 +75,42 @@ var CONFIG = {
   shareImage: 'assets/kakao_main.jpg',
 
   /* ── 갤러리 ───────────────────────────────────────────
-     적은 순서대로 화면에 깔립니다. 사진을 빼려면 그 줄을 지우고,
-     더하려면 gallery 폴더에 넣은 뒤 같은 형식으로 한 줄 추가하세요. */
-  // ?v=2 : 예전 g1~g12 사진을 캐시한 브라우저도 새 사진을 받도록
+     적은 순서대로 화면에 깔립니다.
+     thumb : 폴라로이드에 들어가는 1:1 정사각형 사진 (gallery/sq 폴더, 800x800 권장)
+     full  : 사진을 눌렀을 때 크게 보이는 원본 사진 (gallery 폴더)
+     사진을 빼려면 그 줄을 지우고, 더하려면 두 폴더에 넣은 뒤 같은 형식으로 한 줄 추가하세요.
+     사진을 바꿨는데 휴대폰에 예전 사진이 보이면 ?v= 뒤 숫자를 올려 주세요. */
   gallery: [
-    'gallery/g1.jpg?v=2',
-    'gallery/g2.jpg?v=2',
-    'gallery/g3.jpg?v=2',
-    'gallery/g4.jpg?v=2',
-    'gallery/g5.jpg?v=2',
-    'gallery/g6.jpg?v=2',
-    'gallery/g7.jpg?v=2',
-    'gallery/g8.jpg?v=2',
-    'gallery/g9.jpg?v=2',
-    'gallery/g10.jpg?v=2',
-    'gallery/g11.jpg?v=2',
-    'gallery/g12.jpg?v=2',
-    'gallery/g13.jpg?v=2',
-    'gallery/g14.jpg?v=2',
-    'gallery/g15.jpg?v=2',
-    'gallery/g16.jpg?v=2',
-    'gallery/g17.jpg?v=2'
+    { thumb: 'gallery/sq/g1.jpg?v=3', full: 'gallery/g1.jpg?v=3' },
+    { thumb: 'gallery/sq/g2.jpg?v=3', full: 'gallery/g2.jpg?v=3' },
+    { thumb: 'gallery/sq/g3.jpg?v=3', full: 'gallery/g3.jpg?v=3' },
+    { thumb: 'gallery/sq/g4.jpg?v=3', full: 'gallery/g4.jpg?v=3' },
+    { thumb: 'gallery/sq/g5.jpg?v=3', full: 'gallery/g5.jpg?v=3' },
+    { thumb: 'gallery/sq/g6.jpg?v=3', full: 'gallery/g6.jpg?v=3' },
+    { thumb: 'gallery/sq/g7.jpg?v=3', full: 'gallery/g7.jpg?v=3' },
+    { thumb: 'gallery/sq/g8.jpg?v=3', full: 'gallery/g8.jpg?v=3' },
+    { thumb: 'gallery/sq/g9.jpg?v=3', full: 'gallery/g9.jpg?v=3' },
+    { thumb: 'gallery/sq/g10.jpg?v=3', full: 'gallery/g10.jpg?v=3' },
+    { thumb: 'gallery/sq/g11.jpg?v=3', full: 'gallery/g11.jpg?v=3' },
+    { thumb: 'gallery/sq/g12.jpg?v=3', full: 'gallery/g12.jpg?v=3' },
+    { thumb: 'gallery/sq/g13.jpg?v=3', full: 'gallery/g13.jpg?v=3' },
+    { thumb: 'gallery/sq/g14.jpg?v=3', full: 'gallery/g14.jpg?v=3' },
+    { thumb: 'gallery/sq/g15.jpg?v=3', full: 'gallery/g15.jpg?v=3' },
+    { thumb: 'gallery/sq/g16.jpg?v=3', full: 'gallery/g16.jpg?v=3' },
+    { thumb: 'gallery/sq/g17.jpg?v=3', full: 'gallery/g17.jpg?v=3' },
+    { thumb: 'gallery/sq/g18.jpg?v=3', full: 'gallery/g18.jpg?v=3' },
+    { thumb: 'gallery/sq/g19.jpg?v=3', full: 'gallery/g19.jpg?v=3' },
+    { thumb: 'gallery/sq/g20.jpg?v=3', full: 'gallery/g20.jpg?v=3' },
+    { thumb: 'gallery/sq/g21.jpg?v=3', full: 'gallery/g21.jpg?v=3' },
+    { thumb: 'gallery/sq/g22.jpg?v=3', full: 'gallery/g22.jpg?v=3' },
+    { thumb: 'gallery/sq/g23.jpg?v=3', full: 'gallery/g23.jpg?v=3' },
+    { thumb: 'gallery/sq/g24.jpg?v=3', full: 'gallery/g24.jpg?v=3' },
+    { thumb: 'gallery/sq/g25.jpg?v=3', full: 'gallery/g25.jpg?v=3' },
+    { thumb: 'gallery/sq/g26.jpg?v=3', full: 'gallery/g26.jpg?v=3' },
+    { thumb: 'gallery/sq/g27.jpg?v=3', full: 'gallery/g27.jpg?v=3' },
+    { thumb: 'gallery/sq/g28.jpg?v=3', full: 'gallery/g28.jpg?v=3' },
+    { thumb: 'gallery/sq/g29.jpg?v=3', full: 'gallery/g29.jpg?v=3' },
+    { thumb: 'gallery/sq/g30.jpg?v=3', full: 'gallery/g30.jpg?v=3' }
   ],
 
   /* ── 초대 문구 (invite 그림 위에 얹히는 세 줄) ───────────
