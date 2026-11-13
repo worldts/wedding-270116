@@ -47,7 +47,7 @@ var CONFIG = {
   venueZoom:   15,
 
   /* ── 이미지 · 배경음악 ────────────────────────────────── */
-  coverImage:  'assets/cover.png',
+  coverImage:  'assets/cover.jpg',
   inviteImage: 'assets/invite.png',
   calendarImage: 'assets/calendar.png',   // 갤러리 아래 달력
   letterImage:   'assets/letter.png?v=2', // 카카오톡 공유 버튼 위 편지

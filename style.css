@@ -5,7 +5,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{background:#e3e3e3;}
 body{font-family:'Pretendard',sans-serif;color:var(--ink);line-height:1.9;font-weight:400;letter-spacing:.2px;}
-.phone{max-width:430px;margin:0 auto;background:url('assets/paper-mid-pink.png') top center/100% auto repeat-y;position:relative;overflow:hidden;box-shadow:0 0 50px rgba(0,0,0,.12);}
+.phone{max-width:440px;margin:0 auto;background:url('assets/paper-mid-pink.png') top center/100% auto repeat-y;position:relative;overflow:hidden;box-shadow:0 0 50px rgba(0,0,0,.12);}
 
 section{position:relative;padding:78px 34px;}
 
@@ -29,7 +29,7 @@ section{position:relative;padding:78px 34px;}
 
 /* ---- gallery ---- */
 /* 사진이 가운데로 하나씩 포개지고, 좌우로 끌어서 넘기는 스택 */
-.stack{position:relative;max-width:360px;height:420px;margin:6px auto 0;touch-action:pan-y;user-select:none;-webkit-user-select:none;}
+.stack{position:relative;max-width:360px;height:420px;margin:6px auto 0;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none;}
 .stack.ready{cursor:grab;}
 .stack.ready:active{cursor:grabbing;}
 /* 빈티지 폴라로이드 카드 — assets/frame.png (1056x1285) 를 사진 위에 겹침.
@@ -48,7 +48,7 @@ section{position:relative;padding:78px 34px;}
 .gallery,.details{padding-top:20px;padding-bottom:20px;}
 .account{padding-top:20px;}   /* thanks to: 위 paper-fold 와의 공백만 20px */
 .dcar{position:relative;max-width:360px;margin:0 auto;}
-.dcar-view{overflow:hidden;border-radius:6px;touch-action:pan-y;user-select:none;-webkit-user-select:none;}
+.dcar-view{overflow:hidden;border-radius:6px;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none;}
 .dcar-track{display:flex;will-change:transform;}
 .dcar-slide{flex:0 0 100%;}
 .dcar-slide img{display:block;width:100%;height:auto;pointer-events:none;}
@@ -112,9 +112,9 @@ section{position:relative;padding:78px 34px;}
 .share-copy{background:#0F172A;color:#ffffff;}
 
 /* ---- scroll top ---- */
-.totop{position:fixed;right:calc(50% - 210px);bottom:26px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+.totop{position:fixed;right:calc(50% - 215px);bottom:26px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
   background:rgba(255,253,251,.92);color:var(--rose-d);font-size:16px;cursor:pointer;z-index:60;box-shadow:0 4px 14px rgba(0,0,0,.12);backdrop-filter:blur(4px);}
-@media(max-width:470px){.totop{right:18px;}}
+@media(max-width:480px){.totop{right:18px;}}
 
 /* ---- lightbox / toast ---- */
 .lightbox{position:fixed;inset:0;background:rgba(20,16,16,.94);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;}
