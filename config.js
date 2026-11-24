@@ -18,6 +18,20 @@ var CONFIG = {
   groomName: '유태선',
   brideName: '온세상',
 
+  /* ── 가족용 주소에서만 보이는 내용 ───────────────────────
+     청첩장 주소 뒤에 ?for=family 를 붙여 들어오면
+     '신랑 유태선  신부 온세상' 줄 대신 아래처럼 두 줄로 나옵니다.
+       유인근 · 정지은의 장남 유태선
+       박병일 · 성서경의 장녀 온세상
+     가족용 주소로 들어온 사람이 공유·주소 복사를 하면 가족용 주소가,
+     원래 주소로 들어온 사람은 원래 주소가 전달됩니다.
+     ※ 이 파일은 누구나 열어볼 수 있으니 '안 보이게 숨기는' 용도로 믿으면 안 됩니다. */
+  familyKey:     'family',            // 주소 뒤 ?for= 다음에 오는 말
+  groomParents:  '유인근 · 정지은',
+  groomRelation: '장남',
+  brideParents:  '박병일 · 성서경',
+  brideRelation: '장녀',
+
   /* ── 예식 일시 · 장소 ───────────────────────────────────
      날짜는 쓰이는 자리마다 모양이 달라서 두 가지로 적어 둡니다.
      날짜를 바꿀 때는 아래 두 줄과 index.html 의 og:description 을 함께 고쳐 주세요. */
@@ -141,6 +155,16 @@ var CONFIG = {
   brideAccountLabel: '신부측',
   brideAccounts: [
     { bank: '우리은행', number: '1002-255-063681',  holder: '온세상', relation: '' }
+  ],
+
+  /* 가족용 주소(?for=family)에서만 위 계좌보다 먼저 나오는 부모님 계좌
+     계좌가 없는 분은 줄을 지우면 됩니다. */
+  groomFamilyAccounts: [
+    { bank: '카카오뱅크', number: '3333-04-3864413', holder: '정지은', relation: '어머니' }
+  ],
+  brideFamilyAccounts: [
+    { bank: '농협은행', number: '302-0631-0794-91', holder: '박병일', relation: '아버지' },
+    { bank: '우리은행', number: '501-21-019516-4', holder: '성서경', relation: '어머니' }
   ],
 
   /* ── 안내 메시지 (화면 아래 잠깐 떴다 사라지는 말) ────── */

@@ -13,6 +13,10 @@ if (typeof CONFIG === 'undefined') {
   throw new Error('config.js not loaded');
 }
 
+/* ---- 가족용 주소인지 (주소 뒤에 ?for=family) ---- */
+var IS_FAMILY = !!CONFIG.familyKey &&
+  new RegExp('[?&]for=' + CONFIG.familyKey + '(&|$)').test(location.search);
+
 /* ---- 설정값 준비 (config.js 값 + 조합해서 만드는 값) ---- */
 var V = {};
 for (var k in CONFIG) V[k] = CONFIG[k];
@@ -56,15 +60,41 @@ applyConfig();
   }).join('');
 })();
 
+/* ---- 가족용 주소: '신랑 ○○○  신부 ○○○' 한 줄을 부모님 이름이 들어간 두 줄로 바꾸고,
+   위의 얼굴(invite-faces) 줄은 숨김
+     유인근 · 정지은의 장남 유태선
+     박병일 · 성서경의 장녀 온세상 */
+(function () {
+  if (!IS_FAMILY) return;
+  var faces = document.querySelector('.invite-faces');
+  if (faces) faces.style.display = 'none';
+  var el = document.querySelector('.invite-names');
+  if (!el) return;
+  function line(parents, relation, name) {
+    var d = document.createElement('div');
+    d.innerHTML = '<span class="pr"></span><span class="rel"></span><b class="nm"></b>';
+    d.querySelector('.pr').textContent = parents;
+    d.querySelector('.rel').textContent = '의 ' + relation + ' ';
+    d.querySelector('.nm').textContent = name;
+    return d;
+  }
+  el.innerHTML = '';
+  el.classList.add('family');
+  el.appendChild(line(CONFIG.groomParents, CONFIG.groomRelation, CONFIG.groomName));
+  el.appendChild(line(CONFIG.brideParents, CONFIG.brideRelation, CONFIG.brideName));
+})();
+
 /* ---- 초대 문구의 얼굴 두 개 ----
    config 의 inviteFaces 를 ♥ 기준으로 갈라 좌우에 넣고,
    각 얼굴을 바로 아래 신랑·신부 이름의 한가운데로 옮깁니다.
-   이름 길이가 바뀌어도 알아서 다시 맞춰집니다. */
+   이름 길이가 바뀌어도 알아서 다시 맞춰집니다. (가족용 주소에서는 숨겨져 있어 건너뜀) */
 function alignInviteFaces() {
+  if (IS_FAMILY) return;
   var wrap = document.querySelector('.invite-faces');
-  var names = document.querySelectorAll('.invite-names span');
-  if (!wrap || names.length < 2) return;
+  if (!wrap) return;
   var faces = wrap.querySelectorAll('.face');
+  var names = document.querySelectorAll('.invite-names span');
+  if (names.length < 2) return;
   var base = wrap.getBoundingClientRect().left;
   for (var i = 0; i < 2; i++) {
     var r = names[i].getBoundingClientRect();
@@ -114,8 +144,9 @@ function renderAccounts(containerId, list) {
     el.appendChild(item);
   });
 }
-renderAccounts('acc1Body', CONFIG.groomAccounts);
-renderAccounts('acc2Body', CONFIG.brideAccounts);
+// 가족용 주소에서는 부모님 계좌를 먼저, 신랑·신부 계좌를 맨 밑에
+renderAccounts('acc1Body', (IS_FAMILY ? CONFIG.groomFamilyAccounts || [] : []).concat(CONFIG.groomAccounts));
+renderAccounts('acc2Body', (IS_FAMILY ? CONFIG.brideFamilyAccounts || [] : []).concat(CONFIG.brideAccounts));
 
 /* ---- 갤러리 ---- */
 // 항목마다 thumb(폴라로이드용 1:1)과 full(크게 보기용 원본). 예전처럼 주소 하나만 적어도 둘 다 그 사진을 씀
@@ -339,8 +370,12 @@ function copyLink() {
    config.js 의 kakaoJsKey 를 채우면 카카오톡 공유창이 뜹니다.
    비워 두면 휴대폰 기본 공유창(그것도 없으면 링크 복사)으로 대신합니다. */
 
-/* 공유할 주소 — #뒤에 붙는 찌꺼기를 떼어 냅니다 */
-function shareUrl() { return location.href.split('#')[0]; }
+/* 공유할 주소 — ? 와 # 뒤에 붙은 것을 모두 떼고 깨끗한 주소로 만듭니다.
+   가족용 주소로 들어온 사람만 ?for=family 를 다시 붙여서 가족용 주소를 공유합니다. */
+function shareUrl() {
+  var base = location.href.split(/[?#]/)[0];
+  return IS_FAMILY ? base + '?for=' + CONFIG.familyKey : base;
+}
 
 /* 카카오 카드에 들어갈 사진 주소 (카카오는 http/https 로 시작하는 전체 주소만 받음)
    config.js 의 shareImage 가 'assets/...' 같은 상대 경로면 배포 주소 기준 전체 주소로 바꿈 */
