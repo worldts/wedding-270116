@@ -140,7 +140,7 @@ section{position:relative;padding:78px 34px;}
 .invite-names{max-width:246px;margin:11px auto 0;display:flex;justify-content:space-between;
   font-family:'Pretendard',sans-serif;font-weight:600;font-size:15px;color:#121212;letter-spacing:-0.02rem;line-height:1.4;}
 /* 가족용 주소: 부모님 이름이 들어간 두 줄 (가운데 정렬, 부모님 이름은 보통 굵기 · 신랑신부 이름만 굵게) */
-.invite-names.family{display:block;max-width:none;margin-top:16px;text-align:center;font-weight:400;font-size:17px;line-height:1.7;}
+.invite-names.family{display:block;max-width:none;margin-top:16px;text-align:center;font-weight:400;font-size:18px;line-height:1.8;letter-spacing:1px;}
 .invite-names.family .rel{font-size:15px;margin-left:3px;}
 .invite-names.family .nm{font-weight:600;}
 .invite-illust{width:76%;max-width:280px;height:auto;margin-top:16px;}
